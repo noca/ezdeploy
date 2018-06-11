@@ -1,0 +1,6 @@
+bottle
+sqlalchemy
+bottle-sqlalchemy
+PyYAML
+requests
+ansible==1.9.1

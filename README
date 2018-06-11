@@ -1,0 +1,30 @@
+此发布系统分成 3 部分使用：打包，入库，部署。
+
+使用统一的配置，配置为基本不变的数据：
+# Main structure has name
+name: beta
+git:
+  repo: ssh://git@git.sprucetec.com:50022/meicai/commodity.git
+conf:
+  repo: ssh://git@git.sprucetec.com:50022/meicai-library/service-conf.git
+  service: commodity
+
+target: <<name>>.tar.gz
+build_dir: repo/<<name>>
+packing_dir: pack/<<name>>
+package_exec: tar czf <<target>> -C <<packing_dir>> `ls <<packing_dir>>`
+
+servers:
+  - 10.2.1.12
+
+deploy_dir: deploy/<<name>>
+deploy_exec: rm /data/www/commodity -rf && tar xvzf <<deploy_dir>>/<<target>> -C /data/www && mkdir -m 777 /data/www/commodity/protected/runtime
+
+*  打包
+   python package.py -c CONF -b BRANCH -cb CONF_BRANCH -e ENV
+   
+*  入库
+   python oprepo.py -c CONF -v VERSION -e ENV
+
+* 部署
+   python deploy.py -C CONF -v VERSION -e ENV
