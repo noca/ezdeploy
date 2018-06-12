@@ -167,5 +167,5 @@ def do_list(fp, db):
 
 
 if __name__ == '__main__':
-    app.run(host='localhost', port=10081)
+    app.run(host='localhost', port=10080)
 

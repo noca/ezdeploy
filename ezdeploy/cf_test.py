@@ -5,7 +5,7 @@ Global configuration macro
 import os
 
 REPO_PATH = '/data/service_repo'
-REPO_URL = 'http://127.0.0.1:10081'
+REPO_URL = 'http://127.0.0.1:10080'
 
 GIT_DIR = '/data/ezdeploy_data/git/'
 PACKING_DIR = '/data/ezdeploy_data/packing/'
