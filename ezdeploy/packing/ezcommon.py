@@ -46,12 +46,12 @@ class EZCommonPacking(Packing):
                 logging.error("fetch git repo failed")
                 return False
         
-        (ret, out) = commands.getstatusoutput("git -C {} pull  && git -C {} checkout {}"
-                                              " && git -C {} pull &&"
+        (ret, out) = commands.getstatusoutput("git -C {} checkout master &&"
+                                              " git -C {} pull  && git -C {} checkout origin/{} &&"
 					      " git -C {} submodule update --init --recursive &&"
                                               " git -C {} submodule foreach git pull origin master"
                                               .format(path,
-                                                  path, branch, path, path, path))
+                                                  path, path, branch, path, path))
 
         print out
         if ret != 0:
